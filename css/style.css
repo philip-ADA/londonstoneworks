@@ -63,7 +63,7 @@ ul {
 /* Typography */
 h1, h2, h3, h4 {
     font-family: var(--font-serif);
-    font-weight: 600;
+    font-weight: 500;
     line-height: 1.2;
 }
 
@@ -232,6 +232,7 @@ h3 {
     font-family: var(--font-serif);
     margin-bottom: 2rem;
     line-height: 1.5;
+    font-weight: 500;
 }
 
 .hero-buttons {
@@ -399,26 +400,34 @@ h3 {
 }
 
 .feature-item {
-    text-align: center;
+    text-align: left;
     padding: 1rem;
 }
 
 .feature-icon {
-    font-size: 2rem;
     margin-bottom: 1rem;
-    color: var(--navy);
+}
+
+.feature-icon svg {
+    width: 24px;
+    height: 34px;
 }
 
 .feature-item h3 {
-    font-size: 1rem;
+    font-size: 20px;
+    font-family: var(--font-heading);
+    font-weight: 600;
     color: var(--navy);
     margin-bottom: 0.75rem;
+    text-align: left;
 }
 
 .feature-item p {
-    font-size: 0.875rem;
+    font-size: 14px;
+    font-family: var(--font-serif);
     color: var(--gray-600);
     line-height: 1.6;
+    text-align: left;
 }
 
 /* About Section */
