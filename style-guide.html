@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>London Stoneworks - Style Guide</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=League+Spartan:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Style Guide Specific Styles */
+        .sg-section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .sg-section:last-child {
+            border-bottom: none;
+        }
+
+        .sg-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .sg-description {
+            color: var(--gray-600);
+            margin-bottom: 2rem;
+        }
+
+        .sg-subsection {
+            margin-bottom: 3rem;
+        }
+
+        .sg-subsection-title {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        /* Color Swatches */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .color-swatch {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--gray-200);
+        }
+
+        .color-preview {
+            height: 80px;
+        }
+
+        .color-info {
+            padding: 0.75rem;
+            background: var(--white);
+        }
+
+        .color-name {
+            font-family: var(--font-heading);
+            font-size: 0.875rem;
+            color: var(--navy);
+            margin-bottom: 0.25rem;
+        }
+
+        .color-hex {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+        }
+
+        /* Typography Examples */
+        .type-example {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: var(--gray-50);
+            border-radius: 8px;
+        }
+
+        .type-label {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Component Grid */
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .component-box {
+            padding: 2rem;
+            background: var(--gray-50);
+            border-radius: 12px;
+        }
+
+        .component-box-dark {
+            background: var(--navy);
+        }
+
+        .component-label {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: var(--gray-500);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .component-box-dark .component-label {
+            color: var(--gray-400);
+        }
+
+        /* Button Row */
+        .button-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        /* Spacing Examples */
+        .spacing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+
+        .spacing-item {
+            text-align: center;
+        }
+
+        .spacing-visual {
+            background: var(--navy);
+            margin: 0 auto 0.5rem;
+            border-radius: 4px;
+        }
+
+        .spacing-label {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: var(--gray-600);
+        }
+
+        /* Radius Examples */
+        .radius-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: end;
+        }
+
+        .radius-item {
+            text-align: center;
+        }
+
+        .radius-visual {
+            width: 80px;
+            height: 80px;
+            background: var(--navy);
+            margin: 0 auto 0.5rem;
+        }
+
+        /* Shadow Examples */
+        .shadow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .shadow-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .shadow-label {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: var(--gray-600);
+        }
+
+        /* Icon Sizes */
+        .icon-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: end;
+        }
+
+        .icon-item {
+            text-align: center;
+        }
+
+        .icon-visual {
+            background: var(--gray-100);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.5rem;
+            border-radius: 8px;
+        }
+
+        .icon-visual svg {
+            color: var(--navy);
+        }
+
+        /* Animation Demo */
+        .animation-demo {
+            padding: 2rem;
+            background: var(--gray-50);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .demo-marquee {
+            display: flex;
+            gap: 1rem;
+            animation: demo-scroll 10s linear infinite;
+        }
+
+        .demo-item {
+            flex-shrink: 0;
+            width: 100px;
+            height: 60px;
+            background: var(--navy);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: var(--font-heading);
+        }
+
+        @keyframes demo-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Header offset for style guide */
+        .sg-header {
+            background: var(--navy);
+            padding: 6rem 0 4rem;
+            margin-top: 60px;
+        }
+
+        .sg-header h1 {
+            color: var(--white);
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .sg-header p {
+            color: var(--gray-300);
+            font-size: 1.25rem;
+        }
+
+        /* Nav active state for style guide */
+        .nav-list a[href="style-guide.html"] {
+            color: var(--red-hover);
+        }
+
+        /* Inline demo styles */
+        .inline-demo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.avif" alt="London Stoneworks Logo">
+            </a>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="style-guide.html">Style Guide</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Style Guide Header -->
+    <div class="sg-header">
+        <div class="container">
+            <h1>Style Guide</h1>
+            <p>Visual design system for London Stoneworks</p>
+        </div>
+    </div>
+
+    <main>
+        <!-- Colors -->
+        <section class="sg-section">
+            <div class="container">
+                <h2 class="sg-title">Color Palette</h2>
+                <p class="sg-description">The brand colors used throughout the site.</p>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">Primary Colors</h3>
+                    <div class="color-grid">
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background-color: #001640;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Navy</div>
+                                <div class="color-hex">#001640</div>
+                            </div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background-color: #141d32;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Navy Dark</div>
+                                <div class="color-hex">#141d32</div>
+                            </div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background-color: #243454;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Navy Light</div>
+                                <div class="color-hex">#243454</div>
+                            </div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background-color: #b72b35;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Burgundy/Red</div>
+                                <div class="color-hex">#b72b35</div>
+                            </div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background-color: #9b2c3d;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Burgundy Alt</div>
+                                <div class="color-hex">#9b2c3d</div>
+                            </div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background-color: #c9a962;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Gold</div>
+                                <div class="color-hex">#c9a962</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">Neutral Colors</h3>
+                    <div class="color-grid">
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background-color: #ffffff; border: 1px solid #e5e7eb;"></div>
+                            <div class="color-info">
+                                <div class="color-name">White</div>
+                                <div class="color-hex">#ffffff</div>
+                            </div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background-color: #f9fafb;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Gray 50</div>
+                                <div class="color-hex">#f9fafb</div>
+                            </div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background-color: #f3f4f6;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Gray 100</div>
+                                <div class="color-hex">#f3f4f6</div>
+                            </div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background-color: #e5e7eb;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Gray 200</div>
+                                <div class="color-hex">#e5e7eb</div>
+                            </div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background-color: #d1d5db;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Gray 300</div>
+                                <div class="color-hex">#d1d5db</div>
+                            </div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background-color: #9ca3af;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Gray 400</div>
+                                <div class="color-hex">#9ca3af</div>
+                            </div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background-color: #6b7280;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Gray 500</div>
+                                <div class="color-hex">#6b7280</div>
+                            </div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background-color: #4b5563;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Gray 600</div>
+                                <div class="color-hex">#4b5563</div>
+                            </div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background-color: #374151;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Gray 700</div>
+                                <div class="color-hex">#374151</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">Background Colors</h3>
+                    <div class="color-grid">
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background-color: #ffffff; border: 1px solid #e5e7eb;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Default</div>
+                                <div class="color-hex">#ffffff</div>
+                            </div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background-color: #FAFAFA;"></div>
+                            <div class="color-info">
+                                <div class="color-name">Alternate</div>
+                                <div class="color-hex">#FAFAFA</div>
+                            </div>
+                        </div>
+                        <div class="color-swatch">
+                            <div class="color-preview" style="background-color: #dfe3e8;"></div>
+                            <div class="color-info">
+                                <div class="color-name">About Card</div>
+                                <div class="color-hex">#dfe3e8</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography -->
+        <section class="sg-section">
+            <div class="container">
+                <h2 class="sg-title">Typography</h2>
+                <p class="sg-description">Font families, sizes, and text styles.</p>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">Font Families</h3>
+                    <div class="type-example">
+                        <div class="type-label">--font-heading: League Spartan</div>
+                        <p style="font-family: 'League Spartan', sans-serif; font-size: 2rem; color: var(--navy);">The quick brown fox jumps over the lazy dog</p>
+                    </div>
+                    <div class="type-example">
+                        <div class="type-label">--font-serif: Georgia, Playfair Display</div>
+                        <p style="font-family: Georgia, 'Playfair Display', serif; font-size: 1.25rem; color: var(--gray-700);">The quick brown fox jumps over the lazy dog</p>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">Headings</h3>
+                    <div class="type-example">
+                        <div class="type-label">H1 - 51px / League Spartan / 500</div>
+                        <h1 style="margin: 0;">Heading One</h1>
+                    </div>
+                    <div class="type-example">
+                        <div class="type-label">H2 - clamp(1.75rem, 3vw, 2.5rem) / League Spartan / 500</div>
+                        <h2 style="margin: 0;">Heading Two</h2>
+                    </div>
+                    <div class="type-example">
+                        <div class="type-label">H3 - 1.25rem / League Spartan / 500</div>
+                        <h3 style="margin: 0;">Heading Three</h3>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">Body Text</h3>
+                    <div class="type-example">
+                        <div class="type-label">Body - 16px / Georgia / 400 / line-height: 1.6</div>
+                        <p style="margin: 0; max-width: 600px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                    </div>
+                    <div class="type-example">
+                        <div class="type-label">Small Text - 14px / Georgia / 400</div>
+                        <p style="margin: 0; font-size: 0.875rem;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Tags -->
+        <section class="sg-section">
+            <div class="container">
+                <h2 class="sg-title">Section Tags</h2>
+                <p class="sg-description">Pill-shaped labels used to identify sections.</p>
+
+                <div class="component-grid">
+                    <div class="component-box">
+                        <span class="component-label">Default (Light Background)</span>
+                        <span class="section-tag">Services</span>
+                    </div>
+                    <div class="component-box" style="background: #FAFAFA;">
+                        <span class="component-label">Burgundy Variant</span>
+                        <span class="section-tag" style="background: #9b2c3d; color: white;">Services</span>
+                    </div>
+                    <div class="component-box-dark component-box">
+                        <span class="component-label">Dark Background Variant</span>
+                        <span class="section-tag" style="background: rgba(255,255,255,0.1); color: white;">Contact</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buttons -->
+        <section class="sg-section">
+            <div class="container">
+                <h2 class="sg-title">Buttons</h2>
+                <p class="sg-description">Button styles and variants.</p>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">Primary Button</h3>
+                    <div class="component-box">
+                        <span class="component-label">.btn .btn-primary</span>
+                        <div class="button-row">
+                            <button class="btn btn-primary">Send Message</button>
+                            <button class="btn btn-primary" style="background-color: var(--navy-light); border-color: var(--navy-light);">Hover State</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">Hero CTA Button</h3>
+                    <div class="component-box-dark component-box">
+                        <span class="component-label">.btn-hero (with arrow circle)</span>
+                        <div class="button-row">
+                            <a href="#" class="btn btn-hero">
+                                Work with us
+                                <span class="arrow-circle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">FAQ Button (Outline)</h3>
+                    <div class="component-box">
+                        <span class="component-label">.btn-faq (with arrow circle)</span>
+                        <div class="button-row">
+                            <a href="#" class="btn btn-faq">
+                                Get in touch
+                                <span class="arrow-circle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">Secondary Button</h3>
+                    <div class="component-box-dark component-box">
+                        <span class="component-label">.btn .btn-secondary</span>
+                        <div class="button-row">
+                            <button class="btn btn-secondary">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cards -->
+        <section class="sg-section">
+            <div class="container">
+                <h2 class="sg-title">Cards</h2>
+                <p class="sg-description">Card components used throughout the site.</p>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">Testimonial Card</h3>
+                    <div style="max-width: 320px;">
+                        <div class="testimonial-card">
+                            <div class="stars">★ ★ ★ ★ ★</div>
+                            <p>Roger did an AMAZING job on our patio!! He was so helpful in recommending materials and the end product is fantastic. Couldn't be happier.</p>
+                            <div class="testimonial-author">
+                                <span class="author-avatar" style="background-color: #1a3a5c;">BP</span>
+                                <strong>Bianca Pizzino</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">About Card</h3>
+                    <div class="about-card" style="max-width: 800px;">
+                        <div class="about-image" style="max-width: 200px; aspect-ratio: 1/1;">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" alt="Profile">
+                        </div>
+                        <div class="about-content">
+                            <h2 style="font-size: 1.5rem;">About London Stoneworks</h2>
+                            <p>Roger Essex has spent nearly three decades mastering the art of stonework and landscape design.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">Portfolio Card</h3>
+                    <div style="max-width: 400px;">
+                        <div class="portfolio-item">
+                            <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=600&q=80" alt="Portfolio">
+                            <div class="portfolio-caption">
+                                <h3>Classic Paver Installations</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Accordions -->
+        <section class="sg-section">
+            <div class="container">
+                <h2 class="sg-title">Accordions</h2>
+                <p class="sg-description">Expandable content components.</p>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">Services Accordion</h3>
+                    <div style="max-width: 500px;">
+                        <div class="services-accordion">
+                            <div class="accordion-item active">
+                                <button class="accordion-header">
+                                    <div class="accordion-title">
+                                        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <rect x="3" y="3" width="7" height="7"></rect>
+                                            <rect x="14" y="3" width="7" height="7"></rect>
+                                            <rect x="3" y="14" width="7" height="7"></rect>
+                                            <rect x="14" y="14" width="7" height="7"></rect>
+                                        </svg>
+                                        <span>Hardscape and Flatwork</span>
+                                    </div>
+                                    <span class="accordion-icon"></span>
+                                </button>
+                                <div class="accordion-content">
+                                    <p>Lay the foundation for beauty and function with expert hardscaping.</p>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <button class="accordion-header">
+                                    <div class="accordion-title">
+                                        <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                            <rect x="2" y="6" width="20" height="12" rx="1"></rect>
+                                            <circle cx="12" cy="12" r="2"></circle>
+                                        </svg>
+                                        <span>Outdoor Kitchens, Fire Pits</span>
+                                    </div>
+                                    <span class="accordion-icon"></span>
+                                </button>
+                                <div class="accordion-content">
+                                    <p>Transform your backyard into a true living space.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">FAQ Accordion (Card Style)</h3>
+                    <div style="max-width: 500px;">
+                        <div class="faq-list">
+                            <div class="faq-item active">
+                                <button class="faq-question">
+                                    <span>How long have you been in business?</span>
+                                    <span class="faq-icon"></span>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>Roger Essex has over 27 years of experience in the stonework industry.</p>
+                                </div>
+                            </div>
+                            <div class="faq-item">
+                                <button class="faq-question">
+                                    <span>What services do you provide?</span>
+                                    <span class="faq-icon"></span>
+                                </button>
+                                <div class="faq-answer">
+                                    <p>We provide comprehensive hardscape services.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Form Elements -->
+        <section class="sg-section" style="background: var(--navy);">
+            <div class="container">
+                <h2 class="sg-title" style="color: white;">Form Elements</h2>
+                <p class="sg-description" style="color: var(--gray-300);">Input fields and form components.</p>
+
+                <div style="max-width: 500px;">
+                    <div class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="demo-name">Name</label>
+                                <input type="text" id="demo-name" placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="demo-email">Email</label>
+                                <input type="email" id="demo-email" placeholder="john@example.com">
+                            </div>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="demo-message">Message</label>
+                            <textarea id="demo-message" rows="3" placeholder="Your message..."></textarea>
+                        </div>
+                        <button class="btn btn-primary" style="margin-top: 1rem;">Send Message</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Avatars & Social -->
+        <section class="sg-section">
+            <div class="container">
+                <h2 class="sg-title">Avatars & Social Links</h2>
+                <p class="sg-description">User avatars and social media icons.</p>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">Author Avatars</h3>
+                    <div class="button-row">
+                        <span class="author-avatar" style="background-color: #1a3a5c;">KM</span>
+                        <span class="author-avatar" style="background-color: #1a3a5c;">J</span>
+                        <span class="author-avatar" style="background-color: #c9a962;">MS</span>
+                        <span class="author-avatar" style="background-color: #9b2c3d;">SE</span>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">Social Links</h3>
+                    <div class="component-box-dark component-box">
+                        <span class="component-label">Social link buttons</span>
+                        <div class="social-links">
+                            <a href="#" aria-label="Facebook">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                            </a>
+                            <a href="#" aria-label="Instagram">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">Star Rating</h3>
+                    <div class="component-box">
+                        <span class="component-label">.stars (burgundy color)</span>
+                        <div class="stars">★ ★ ★ ★ ★</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Border Radius -->
+        <section class="sg-section">
+            <div class="container">
+                <h2 class="sg-title">Border Radius</h2>
+                <p class="sg-description">Border radius scale used for components.</p>
+
+                <div class="radius-grid">
+                    <div class="radius-item">
+                        <div class="radius-visual" style="border-radius: 4px;"></div>
+                        <div class="spacing-label">4px<br>Small</div>
+                    </div>
+                    <div class="radius-item">
+                        <div class="radius-visual" style="border-radius: 6px;"></div>
+                        <div class="spacing-label">6px<br>Medium</div>
+                    </div>
+                    <div class="radius-item">
+                        <div class="radius-visual" style="border-radius: 8px;"></div>
+                        <div class="spacing-label">8px<br>Large</div>
+                    </div>
+                    <div class="radius-item">
+                        <div class="radius-visual" style="border-radius: 12px;"></div>
+                        <div class="spacing-label">12px<br>XL</div>
+                    </div>
+                    <div class="radius-item">
+                        <div class="radius-visual" style="border-radius: 50px;"></div>
+                        <div class="spacing-label">50px<br>Pill</div>
+                    </div>
+                    <div class="radius-item">
+                        <div class="radius-visual" style="border-radius: 50%;"></div>
+                        <div class="spacing-label">50%<br>Circle</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shadows -->
+        <section class="sg-section" style="background: var(--gray-100);">
+            <div class="container">
+                <h2 class="sg-title">Box Shadows</h2>
+                <p class="sg-description">Shadow styles for elevation.</p>
+
+                <div class="shadow-grid">
+                    <div class="shadow-item" style="box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);">
+                        <div class="shadow-label">Header<br>0 2px 10px rgba(0,0,0,0.05)</div>
+                    </div>
+                    <div class="shadow-item" style="box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);">
+                        <div class="shadow-label">Cards<br>0 2px 8px rgba(0,0,0,0.04)</div>
+                    </div>
+                    <div class="shadow-item" style="box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);">
+                        <div class="shadow-label">Mobile Menu<br>0 4px 10px rgba(0,0,0,0.1)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Spacing -->
+        <section class="sg-section">
+            <div class="container">
+                <h2 class="sg-title">Spacing Scale</h2>
+                <p class="sg-description">Common spacing values used for margins and padding.</p>
+
+                <div class="spacing-grid">
+                    <div class="spacing-item">
+                        <div class="spacing-visual" style="width: 12px; height: 12px;"></div>
+                        <div class="spacing-label">0.75rem<br>12px</div>
+                    </div>
+                    <div class="spacing-item">
+                        <div class="spacing-visual" style="width: 16px; height: 16px;"></div>
+                        <div class="spacing-label">1rem<br>16px</div>
+                    </div>
+                    <div class="spacing-item">
+                        <div class="spacing-visual" style="width: 24px; height: 24px;"></div>
+                        <div class="spacing-label">1.5rem<br>24px</div>
+                    </div>
+                    <div class="spacing-item">
+                        <div class="spacing-visual" style="width: 32px; height: 32px;"></div>
+                        <div class="spacing-label">2rem<br>32px</div>
+                    </div>
+                    <div class="spacing-item">
+                        <div class="spacing-visual" style="width: 48px; height: 48px;"></div>
+                        <div class="spacing-label">3rem<br>48px</div>
+                    </div>
+                    <div class="spacing-item">
+                        <div class="spacing-visual" style="width: 64px; height: 64px;"></div>
+                        <div class="spacing-label">4rem<br>64px</div>
+                    </div>
+                    <div class="spacing-item">
+                        <div class="spacing-visual" style="width: 96px; height: 96px;"></div>
+                        <div class="spacing-label">6rem<br>96px</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animations -->
+        <section class="sg-section">
+            <div class="container">
+                <h2 class="sg-title">Animations</h2>
+                <p class="sg-description">Motion and transition effects.</p>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">Marquee / Carousel</h3>
+                    <div class="animation-demo">
+                        <div class="demo-marquee">
+                            <div class="demo-item">1</div>
+                            <div class="demo-item">2</div>
+                            <div class="demo-item">3</div>
+                            <div class="demo-item">4</div>
+                            <div class="demo-item">5</div>
+                            <div class="demo-item">1</div>
+                            <div class="demo-item">2</div>
+                            <div class="demo-item">3</div>
+                            <div class="demo-item">4</div>
+                            <div class="demo-item">5</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1rem; font-family: monospace; font-size: 0.875rem; color: var(--gray-600);">animation: marquee 20s linear infinite;</p>
+                </div>
+
+                <div class="sg-subsection">
+                    <h3 class="sg-subsection-title">Hover Transitions</h3>
+                    <div class="component-box">
+                        <span class="component-label">All transitions use: transition: all 0.3s ease;</span>
+                        <div class="button-row">
+                            <button class="btn btn-primary">Hover Me</button>
+                            <a href="#" class="btn btn-faq">
+                                Hover Me
+                                <span class="arrow-circle">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Breakpoints -->
+        <section class="sg-section">
+            <div class="container">
+                <h2 class="sg-title">Responsive Breakpoints</h2>
+                <p class="sg-description">Media query breakpoints for responsive design.</p>
+
+                <div class="component-grid" style="grid-template-columns: repeat(3, 1fr);">
+                    <div class="component-box" style="text-align: center;">
+                        <span class="component-label">Tablet Landscape</span>
+                        <div style="font-family: var(--font-heading); font-size: 2rem; color: var(--navy);">1024px</div>
+                        <p style="font-size: 0.875rem; color: var(--gray-600); margin-top: 0.5rem;">Hero single column, Features 2-col</p>
+                    </div>
+                    <div class="component-box" style="text-align: center;">
+                        <span class="component-label">Tablet Portrait</span>
+                        <div style="font-family: var(--font-heading); font-size: 2rem; color: var(--navy);">768px</div>
+                        <p style="font-size: 0.875rem; color: var(--gray-600); margin-top: 0.5rem;">Mobile nav, single column layouts</p>
+                    </div>
+                    <div class="component-box" style="text-align: center;">
+                        <span class="component-label">Mobile</span>
+                        <div style="font-family: var(--font-heading); font-size: 2rem; color: var(--navy);">480px</div>
+                        <p style="font-size: 0.875rem; color: var(--gray-600); margin-top: 0.5rem;">Full-width buttons, smaller gallery</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <p>&copy; 2024 London Stoneworks. Style Guide.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -40,6 +40,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
+    // Services Accordion with Image Switching
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    const serviceImages = document.querySelectorAll('.services-image img');
+
+    accordionItems.forEach(item => {
+        const header = item.querySelector('.accordion-header');
+
+        header.addEventListener('click', function() {
+            // Close other open items
+            accordionItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                }
+            });
+
+            // Toggle current item
+            item.classList.toggle('active');
+
+            // Switch image based on data-service attribute
+            if (item.classList.contains('active')) {
+                const serviceType = item.getAttribute('data-service');
+                serviceImages.forEach(img => {
+                    if (img.getAttribute('data-service') === serviceType) {
+                        img.classList.add('active');
+                    } else {
+                        img.classList.remove('active');
+                    }
+                });
+            }
+        });
+    });
+
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
@@ -107,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Observe elements for animation
-    const animateElements = document.querySelectorAll('.feature-item, .portfolio-item, .service-item, .testimonial-card');
+    const animateElements = document.querySelectorAll('.feature-item, .portfolio-item, .testimonial-card');
     animateElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
